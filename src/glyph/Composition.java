@@ -3,6 +3,7 @@ import java.awt.Point;
 import javax.naming.OperationNotSupportedException;
 import window.Window;
 
+
 // Composition 類別是一個更高層次的複合元素，具有複雜的排版邏輯，並提供了方法來插入子元素、設定子元素的父元素、尋找根元素、
 // 取得和設定 compositor 以及在指定的視窗上繪製元素等功能。
 public abstract class Composition extends CompositeGlyph {

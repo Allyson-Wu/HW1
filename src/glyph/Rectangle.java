@@ -32,5 +32,5 @@ public class Rectangle extends Glyph {  // 實作了 Glyph 抽象類別的一個
         getBounds().setArea(w, h);
         //System.out.println("Rectangle.java constructor");
     }
-
+    
 }
