@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class Row extends Composition {
 
+    public void setPosition(int x, int y) {
+        getBounds().point().setLocation(x, y);
+    }
+
     public void setAdjustedBounds(Point cursor) {
         getBounds().setArea(cursor.x - getBounds().point().x, getBounds().height());
     }
@@ -29,7 +33,6 @@ public class Row extends Composition {
         return cursor;
     }
 
-    //public Row(Compositor compositor) {
     public Row(Compositor compositor) {
         getBounds().setArea(0,0);
         Point point = new Point(0,0);
@@ -37,7 +40,6 @@ public class Row extends Composition {
         setChildren(new ArrayList<Glyph>());
         setCompositor(compositor);
         getCompositor().setComposition(this);
-        //System.out.println("Row.java constructor");
     }
 
 }

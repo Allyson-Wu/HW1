@@ -1,19 +1,13 @@
 package glyph;
 import java.awt.Point;
-import java.util.ArrayList;
+import window.Window;
 
 import javax.naming.OperationNotSupportedException;
 
-import window.Window;
-
-//import javax.naming.OperationNotSupportedException;
-
-public abstract class Glyph {
+abstract class Glyph {
 
     private Glyph parent;
-    private ArrayList<Glyph> children;
     private Bounds bounds = new Bounds(new Point(0,0), 0 ,0);  //upperLeft(x,y), width, height
-    public abstract Point moveCursor(Point cursor, Glyph child);
 
     public void setParent(Glyph glyph) {
         this.parent = glyph;
@@ -24,23 +18,8 @@ public abstract class Glyph {
         return parent;
     }
 
-	public void setChildren(ArrayList<Glyph> children) {
-		this.children = children;
-	}
+    public abstract void draw(Window window);
 
-	public ArrayList<Glyph> getChildren() {
-		return children;
-	}
-
-    // public abstract void draw(Window window);
-
-    public void draw(Window window) {
-        for(int i = 0; i < children.size(); i++) {
-            if(children.get(i) != null) {
-                children.get(i).draw(window);
-            }
-        }
-    }
     public Bounds getBounds() {
         return bounds;
     }
@@ -50,19 +29,11 @@ public abstract class Glyph {
             children.add(children.size(), null);
         }
 		children.add(position, glyph);
-        //System.out.println("CompositeGlyph.java insert");
 	}
 
-    public void compose() {
+    public void remove() throws Exception {}
 
-    }
-	public Glyph child(int position) throws OperationNotSupportedException, IndexOutOfBoundsException {
-       
-        if(position >= children.size() || position < 0) {
-            throw new IndexOutOfBoundsException("IndexOutOfBoundsException caught: There's no child");
-        }
-        return children.get(position);
-    }
+    public void compose() {}
 
     public abstract void setSize(Window window);
 }

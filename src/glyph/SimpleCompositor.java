@@ -15,6 +15,11 @@ public class SimpleCompositor implements Compositor {
 
     public void compose() {
 
+        if (composition.getParent() != null) {
+            composition.getParent().compose();
+            return;
+        }
+
         // create cursor based on parent
         Point cursor = composition.getBounds().point();
         Glyph child = null;
