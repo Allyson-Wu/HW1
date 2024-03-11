@@ -3,7 +3,6 @@ package glyph;
 import java.awt.Point;
 import window.Window;
 
-import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 
 public class Row extends Composition {
