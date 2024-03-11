@@ -12,18 +12,18 @@ public class Main {
         
         // create objects
         Window sw = new SwingWindow("Lexi");
-        SimpleCompositor col1_sc = new SimpleCompositor(sw);  //15~20可能不用
+        SimpleCompositor col1_sc = new SimpleCompositor(sw);
         SimpleCompositor row1_sc = new SimpleCompositor(sw);
         SimpleCompositor row2_sc = new SimpleCompositor(sw);
         SimpleCompositor row3_sc = new SimpleCompositor(sw);
         SimpleCompositor row4_sc = new SimpleCompositor(sw);
         SimpleCompositor row5_sc = new SimpleCompositor(sw);
-        Glyph col1 = new Column(col1_sc);  //should put sw
-        Glyph row1 = new Row(row1_sc);
-        Glyph row2 = new Row(row2_sc);
-        Glyph row3 = new Row(row3_sc);
-        Glyph row4 = new Row(row4_sc);
-        Glyph row5 = new Row(row5_sc);
+        Column col1 = new Column(col1_sc);
+        Row row1 = new Row(row1_sc);
+        Row row2 = new Row(row2_sc);
+        Row row3 = new Row(row3_sc);
+        Row row4 = new Row(row4_sc);
+        Row row5 = new Row(row5_sc);
         Glyph X1 = new Character('X');
         Glyph X2 = new Character('X');
         Glyph X3 = new Character('X');
