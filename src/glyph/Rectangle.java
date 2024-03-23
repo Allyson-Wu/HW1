@@ -1,31 +1,18 @@
 package glyph;
-import window.Window;
-
-import java.awt.Point;
 
 public class Rectangle extends Glyph {
 
-    public void setSize(Window window) {
- 
+    private int w = 10;
+    private int h = 10;
+
+    
+    public Rectangle(int w, int h){
+        this.w = w;
+        this.h = h;
     }
 
+    @Override
     public void draw(Window window) {
-        
-        int x = getBounds().point().x;
-        int y = getBounds().point().y;
-        int w = getBounds().width();
-        int h = getBounds().height();
-
-        window.drawRectangle(x, y, w, h);
-        //System.out.println("Rectangle.java draw");
+        window.drawRectangle(10,10, w, h); // 假設所有字符都在(0,0)處繪製
     }
-
-    public Rectangle(int w, int h) {
-
-        setParent(null);
-		getBounds().point().setLocation(new Point(0,0));
-        getBounds().setArea(w, h);
-        //System.out.println("Rectangle.java constructor");
-    }
-
 }

@@ -1,10 +1,9 @@
-package window;
+package glyph;
 
-import glyph.*;
+
 
 import java.awt.*;
 import javax.swing.*;
-
 
 public class SwingWindow implements Window {
 
@@ -67,4 +66,5 @@ public class SwingWindow implements Window {
     _jFrame.setContentPane(_pane);
     _jFrame.setVisible(true);
   }
+
 }

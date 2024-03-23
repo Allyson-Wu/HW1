@@ -1,68 +1,39 @@
 package glyph;
-import java.awt.Point;
-import java.util.ArrayList;
 
-import javax.naming.OperationNotSupportedException;
+import org.w3c.dom.css.Rect;
 
-import window.Window;
+abstract class Glyph {
 
-//import javax.naming.OperationNotSupportedException;
+    // 繪製Glyph在窗口上
+    abstract void draw(Window window);
 
-public abstract class Glyph {
+    // 獲取Glyph的邊界
+    //abstract void getBounds(Rect rect);
 
-    private Glyph parent;
-    private ArrayList<Glyph> children;
-    private Bounds bounds = new Bounds(new Point(0,0), 0 ,0);  //upperLeft(x,y), width, height
-    public abstract Point moveCursor(Point cursor, Glyph child);
+    // 檢查點是否與Glyph相交
+    //public abstract boolean intersects(Point point);
 
-    public void setParent(Glyph glyph) {
-        this.parent = glyph;
-        //System.out.println("Glyph.java setParent---------\n");
-    }
+    // 將子Glyph插入到特定位置
+    void insert(Glyph glyph, int index){}
 
-    public Glyph getParent() {
-        return parent;
-    }
+    // 從Glyph中刪除指定的子Glyph
+    void remove(Glyph glyph){}
 
-	public void setChildren(ArrayList<Glyph> children) {
-		this.children = children;
-	}
+    // 獲取Glyph的特定子Glyph
+    //abstract Glyph getChild(int index);
 
-	public ArrayList<Glyph> getChildren() {
-		return children;
-	}
-
-    // public abstract void draw(Window window);
-
-    public void draw(Window window) {
-        for(int i = 0; i < children.size(); i++) {
-            if(children.get(i) != null) {
-                children.get(i).draw(window);
-            }
-        }
-    }
-    public Bounds getBounds() {
-        return bounds;
-    }
-
-	public void insert(Glyph glyph, int position) throws OperationNotSupportedException, IndexOutOfBoundsException {
-        while(position > children.size()) { // fill missing spots with "null"
-            children.add(children.size(), null);
-        }
-		children.add(position, glyph);
-        //System.out.println("CompositeGlyph.java insert");
-	}
-
-    public void compose() {
-
-    }
-	public Glyph child(int position) throws OperationNotSupportedException, IndexOutOfBoundsException {
-       
-        if(position >= children.size() || position < 0) {
-            throw new IndexOutOfBoundsException("IndexOutOfBoundsException caught: There's no child");
-        }
-        return children.get(position);
-    }
-
-    public abstract void setSize(Window window);
+    // 獲取Glyph的父Glyph
+    //abstract Glyph getParent();
+    
 }
+
+// textbook provided:
+// abstract class Glyph {
+//     void draw(Window window);
+//     void bounds(Rect rect);
+//     boolean intersects(Point point);
+//     void insert(Glyph glyph, int index);
+//     void remove(Glyph glyph);
+//     Glyph child(int index);
+//     Glyph parent();
+// }

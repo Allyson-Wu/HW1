@@ -1,15 +1,21 @@
 package glyph;
 
-import java.awt.Point;
-
 public class Bounds {
 
-    private Point upperLeft;
-    private int width;
-    private int height;
+    private int x, y, width, height;
 
-    public Point point() {
-        return upperLeft;
+    public Bounds(int x,int y,int w,int h) {
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+    }
+    
+    public int x() {
+        return x;
+    }
+    public int y() {
+        return y;
     }
 
     public int width() {
@@ -24,10 +30,4 @@ public class Bounds {
         this.width = width;
         this.height = height;
     }   
-
-    public Bounds(Point upperLeft, int width, int height) {
-        this.upperLeft = upperLeft;
-        this.width = width;
-        this.height = height;
-    }
 }
