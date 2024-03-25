@@ -1,55 +1,73 @@
 package glyph;
-import java.awt.Point;
-import javax.naming.OperationNotSupportedException;
-import window.Window;
 
-public abstract class Composition extends CompositeGlyph {
-    
+import java.util.ArrayList;
+
+public class Composition extends Glyph{
+
+    private ArrayList<Glyph> children;
     private Compositor compositor;
-    
-    // public Composition(Window w) {
-    //   compositor=new SimpleCompositor(w)
-    //   compositor.setComposition(this);
-    //   // initialize the inherited children array
-    // }
+    private Window window;
+    private int width;
+    private int height;
+    private int x, y;
 
-    public void insert(Glyph glyph, int position) throws OperationNotSupportedException, IndexOutOfBoundsException {
-        super.insert(glyph, position);
+    public Composition(Window window) {
+        this.window = window;
+        compositor = new SimpleCompositor(window);
+        compositor.setComposition(this);
+        children = new ArrayList<>();
+    }
+
+    @Override
+    public void insert(Glyph glyph, int index) {
+        children.add(index, glyph);
         glyph.setParent(this);
-        findroot();
-        //System.out.println("Composition.java insert");
+        // compose();
     }
 
-    public void findroot() {
-        boolean found = false;
-        Glyph current = this;
-        while(!found) {
-            if (current.getParent() != null) {
-                current = current.getParent();
-            }
-            else {
-                current.compose();
-                found = true;
-            }
+    @Override
+    public void remove(int index) {
+        children.remove(index);
+        // compose();
+    }
+
+    @Override 
+    public void draw(Window window){
+        for(Glyph child: children){
+            child.draw(window);
         }
-    }
-
-    public Compositor getCompositor() {
-		return compositor;
-	}
-    
-    public void setCompositor(Compositor compositor) {
-        this.compositor = compositor;
-    }
-    
-    public void draw(Window window) {
-        super.draw(window);
     }
 
     public void compose() {
         compositor.compose();
     }
 
-    public abstract void setAdjustedBounds(Point cursor);
+    public ArrayList<Glyph> getchildren() {
+        return children;
+    }
 
+    public void setSize(int w, int h) {
+        width = w;
+        height = h;
+    }
+
+    public int[] getSize() {
+        int[] size = {width, height};
+        return size;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setCoordinate(int x, int y, Glyph child) {}
+
+    public int[] getCoordinate() {
+        int[] coordinate = {x, y};
+        return coordinate;
+    }
 }

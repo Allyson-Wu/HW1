@@ -1,44 +1,38 @@
 package glyph;
 
-import java.awt.Point;
-import window.Window;
-
-import javax.naming.OperationNotSupportedException;
-import java.util.ArrayList;
-
 public class Row extends Composition {
 
-    public void setAdjustedBounds(Point cursor) {
-        getBounds().setArea(cursor.x - getBounds().point().x, getBounds().height());
+    private int width;
+    private int height;
+    private int x, y;
+
+    public Row(Window window){
+        super(window);
+        width = 0;
+        height = 0;
     }
 
-    public void setSize(Window window) {
-        int width = 0;
-        int height = 0;
-    
-        for (Glyph child : super.getChildren()) {
-            width += child.getBounds().width();
-            height = Math.max(height, child.getBounds().height());
-        }
-    
-        getBounds().setArea(width, height);
+    public void draw(Window window){
+        super.compose();
     }
 
-    public Point moveCursor(Point cursor, Glyph child) {
-        int newX = child.getBounds().point().x + child.getBounds().width();
-        cursor.x = newX;
-        return cursor;
+    public void setCoordinate(int x, int y, Glyph child) {
+        this.x = x + child.getWidth();
+        this.y = y;
+        width += child.getWidth();
+        height = Math.max(height, child.getHeight());
     }
 
-    //public Row(Compositor compositor) {
-    public Row(Compositor compositor) {
-        getBounds().setArea(0,0);
-        Point point = new Point(0,0);
-        getBounds().point().setLocation(point);
-        setChildren(new ArrayList<Glyph>());
-        setCompositor(compositor);
-        getCompositor().setComposition(this);
-        //System.out.println("Row.java constructor");
+    public int[] getCoordinate() {
+        int[] coordinate = {x, y};
+        return coordinate;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

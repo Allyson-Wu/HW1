@@ -1,68 +1,43 @@
 package glyph;
-import java.awt.Point;
-import java.util.ArrayList;
 
-import javax.naming.OperationNotSupportedException;
-
-import window.Window;
-
-//import javax.naming.OperationNotSupportedException;
-
-public abstract class Glyph {
+abstract class Glyph {
 
     private Glyph parent;
-    private ArrayList<Glyph> children;
-    private Bounds bounds = new Bounds(new Point(0,0), 0 ,0);  //upperLeft(x,y), width, height
-    public abstract Point moveCursor(Point cursor, Glyph child);
 
-    public void setParent(Glyph glyph) {
-        this.parent = glyph;
-        //System.out.println("Glyph.java setParent---------\n");
-    }
+    // 繪製Glyph在窗口上
+    public void draw(Window window){};
 
+    // 獲取Glyph的邊界
+    //abstract void getBounds(Rect rect);
+
+    // 檢查點是否與Glyph相交
+    //public abstract boolean intersects(Point point);
+
+    // 將子Glyph插入到特定位置
+    public void insert(Glyph glyph, int index){};
+
+    // 從Glyph中刪除指定的子Glyph
+    public void remove(int index){};
+
+    // 獲取Glyph的特定子Glyph
+    //abstract Glyph getChild(int index);
+
+    // 獲取Glyph的父Glyph
     public Glyph getParent() {
         return parent;
     }
 
-	public void setChildren(ArrayList<Glyph> children) {
-		this.children = children;
-	}
-
-	public ArrayList<Glyph> getChildren() {
-		return children;
-	}
-
-    // public abstract void draw(Window window);
-
-    public void draw(Window window) {
-        for(int i = 0; i < children.size(); i++) {
-            if(children.get(i) != null) {
-                children.get(i).draw(window);
-            }
-        }
-    }
-    public Bounds getBounds() {
-        return bounds;
+    public void setParent(Glyph glyph) {
+        this.parent = glyph;
     }
 
-	public void insert(Glyph glyph, int position) throws OperationNotSupportedException, IndexOutOfBoundsException {
-        while(position > children.size()) { // fill missing spots with "null"
-            children.add(children.size(), null);
-        }
-		children.add(position, glyph);
-        //System.out.println("CompositeGlyph.java insert");
-	}
+    abstract int getWidth();
+    abstract int getHeight();
+
+    public void setCoordinate(int x, int y) {}
 
     public void compose() {
-
-    }
-	public Glyph child(int position) throws OperationNotSupportedException, IndexOutOfBoundsException {
-       
-        if(position >= children.size() || position < 0) {
-            throw new IndexOutOfBoundsException("IndexOutOfBoundsException caught: There's no child");
-        }
-        return children.get(position);
+        throw new UnsupportedOperationException("Unimplemented method 'compose'");
     }
 
-    public abstract void setSize(Window window);
 }

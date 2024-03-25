@@ -1,31 +1,36 @@
 package glyph;
-import window.Window;
-
-import java.awt.Point;
 
 public class Rectangle extends Glyph {
 
-    public void setSize(Window window) {
- 
+    private int width;
+    private int height;
+    private int x, y;
+    
+    public Rectangle(int width, int height){
+        this.width = width;
+        this.height = height;
     }
 
+    public void setCoordinate(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int[] getSize() {
+        int[] size = {width, height};
+        return size;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
     public void draw(Window window) {
-        
-        int x = getBounds().point().x;
-        int y = getBounds().point().y;
-        int w = getBounds().width();
-        int h = getBounds().height();
-
-        window.drawRectangle(x, y, w, h);
-        //System.out.println("Rectangle.java draw");
+        window.drawRectangle(x, y, width, height);
     }
-
-    public Rectangle(int w, int h) {
-
-        setParent(null);
-		getBounds().point().setLocation(new Point(0,0));
-        getBounds().setArea(w, h);
-        //System.out.println("Rectangle.java constructor");
-    }
-
 }

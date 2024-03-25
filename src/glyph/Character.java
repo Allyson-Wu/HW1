@@ -1,37 +1,33 @@
 package glyph;
 
-import java.awt.Point;
-import window.Window;
-
 public class Character extends Glyph {
-    
+
     private char character;
-
-    public void setSize(Window window) {
-
-        int w = window.charWidth(this.character);
-        int h = window.charHeight(this.character);
-
-        getBounds().setArea(w, h); 
-        //System.out.println("Character.java setSize");
-    }
-
-    public void draw(Window window) {
-        
-        int x = getBounds().point().x;
-        int y = getBounds().point().y;
-
-        window.drawCharacter(character, x, y);
-        //System.out.println("Character.java draw");
-    }
+    private int width;
+    private int height;
+    private int x, y;
 
     public Character(char character) {
-        
         this.character = character;
-        setParent(null);
-        getBounds().point().setLocation(new Point(0,0));
-        getBounds().setArea(0, 0);
-        //System.out.println("Character.java constructor");
     }
 
+    public void setCoordinate(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+    
+    @Override
+    public void draw(Window window) {
+        width = window.charWidth(this.character);
+        height = window.charHeight(this.character);
+        window.drawCharacter(character, x, y);
+    }
 }
