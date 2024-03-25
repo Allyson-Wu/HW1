@@ -1,29 +1,23 @@
-package glyph;
+// package glyph;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
-import javax.naming.OperationNotSupportedException;
+// public class CompositeGlyph extends Glyph {
 
-public class CompositeGlyph extends Glyph {
+//     private ArrayList<Glyph> children;
+//     private int width;
+//     private int height;
 
-    private ArrayList<Glyph> children = new ArrayList<>();
-    
-    @Override
-    public void insert(Glyph glyph, int position)/* throws OperationNotSupportedException, IndexOutOfBoundsException*/{
+//     public CompositeGlyph(Window window) {
+//         this.window = window;
+//         children = new ArrayList<>();
+//     }
 
-        // while(position > children.size()) { // fill missing spots with "null"
-        //     children.add(children.size(), null);
-        // }
-        // glyph.setParent(this);
-		// children.add(position, glyph);
-    }
-    
-    @Override 
-    public void draw(Window window){
-        for(int i = 0; i < children.size(); i++) {
-            if(children.get(i) != null) {
-                children.get(i).draw(window);
-            }
-        }
-    }
-}
+//     public int getWidth() {
+//         return width;
+//     }
+
+//     public int getHeight() {
+//         return height;
+//     }
+// }

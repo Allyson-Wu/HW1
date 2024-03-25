@@ -4,10 +4,19 @@ public class Main {
     public static void main(String[] args) throws Exception {
         
         Window window = new SwingWindow("Lexi Editor");
-        Glyph cGlyph = new Character('a');
-        //Glyph rGlyph = new Rectangle(20,20);
+        Composition cGlyph = new Row(window);
+        Glyph Rct1 = new Rectangle(10, 20);
+        Glyph Rct2 = new Rectangle(5, 20);
+        Glyph Rct3 = new Rectangle(10, 10);
+        cGlyph.insert(Rct1, 0);
+        cGlyph.insert(Rct2, 1);
+        cGlyph.insert(Rct3, 2);
+
         window.setContents(cGlyph);
+
+        //Glyph rGlyph = new Rectangle(20,20);
         //window.setContents(rGlyph);
+
     }
 }
 

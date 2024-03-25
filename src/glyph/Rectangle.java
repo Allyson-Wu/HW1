@@ -2,17 +2,35 @@ package glyph;
 
 public class Rectangle extends Glyph {
 
-    private int w = 10;
-    private int h = 10;
-
+    private int width;
+    private int height;
+    private int x, y;
     
-    public Rectangle(int w, int h){
-        this.w = w;
-        this.h = h;
+    public Rectangle(int width, int height){
+        this.width = width;
+        this.height = height;
+    }
+
+    public void setCoordinate(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int[] getSize() {
+        int[] size = {width, height};
+        return size;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     @Override
     public void draw(Window window) {
-        window.drawRectangle(10,10, w, h); // 假設所有字符都在(0,0)處繪製
+        window.drawRectangle(x, y, width, height);
     }
 }

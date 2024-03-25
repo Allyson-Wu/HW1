@@ -14,6 +14,7 @@ public class Bounds {
     public int x() {
         return x;
     }
+    
     public int y() {
         return y;
     }
