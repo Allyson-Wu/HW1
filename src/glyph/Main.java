@@ -4,18 +4,30 @@ public class Main {
     public static void main(String[] args) throws Exception {
         
         Window window = new SwingWindow("Lexi Editor");
-        Composition cGlyph = new Row(window);
-        Glyph Rct1 = new Rectangle(10, 20);
-        Glyph Rct2 = new Rectangle(5, 20);
-        Glyph Rct3 = new Rectangle(10, 10);
-        cGlyph.insert(Rct1, 0);
-        cGlyph.insert(Rct2, 1);
-        cGlyph.insert(Rct3, 2);
+        Glyph Row1 = new Row(window);
+        Glyph Rct1 = new Rectangle(50, 40);
+        Glyph Rct2 = new Rectangle(30, 20);
+        Glyph Char1 = new Character('x');
 
-        window.setContents(cGlyph);
+        Row1.insert(Rct1, 0);
+        Row1.insert(Char1, 1);
+        Row1.insert(Rct2, 2);
+    
+        // window.setContents(Row1);
 
-        //Glyph rGlyph = new Rectangle(20,20);
-        //window.setContents(rGlyph);
+        // Row1.remove(0);
+        // window.setContents(Row1);
+
+        Glyph Col1 = new Column(window);
+        Col1.insert(Rct1, 0);
+        Col1.insert(Char1, 1);
+        Col1.insert(Rct2, 2);
+
+        Col1.insert(Row1, 3);
+
+        window.setContents(Col1);
+
+
 
     }
 }

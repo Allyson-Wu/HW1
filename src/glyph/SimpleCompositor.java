@@ -17,10 +17,10 @@ public class SimpleCompositor implements Compositor {
     }
 
     public void compose() {
-        if (composition.getParent() != null) {
-            composition.getParent().compose();
-            return;
-        }
+        // if (composition.getParent() != null) {
+        //     composition.getParent().compose();
+        //     return;
+        // }
 
         children = composition.getchildren();
 
@@ -28,7 +28,7 @@ public class SimpleCompositor implements Compositor {
             int[] coordinates = composition.getCoordinate();
             child.setCoordinate(coordinates[0], coordinates[1]);
             child.draw(window);
-            composition.setCoordinate(coordinates[0], coordinates[1], child);
+            composition.updateCoordinate(coordinates[0], coordinates[1], child);
         }
 
     }
